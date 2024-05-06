@@ -32,7 +32,17 @@ namespace Hastane_Proje
 
         private void BtnGiris_Click(object sender, EventArgs e)
         {
-            if (MskTc.Text == "" || TxtSifre.Text == "" ) 
+            
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            if (MskTc.Text == "" || TxtSifre.Text == "")
             {
                 MessageBox.Show("Boş kalan alanları lütfen doldurunuz .", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -44,8 +54,8 @@ namespace Hastane_Proje
                 SqlDataReader dr = komutgiris.ExecuteReader();
                 if (dr.Read())
                 {
-                    FrmHastaDetay frmhasta = new FrmHastaDetay();
-                    frmhasta.hastatc = MskTc.Text;
+                    FrmHastaEkran frmhasta = new FrmHastaEkran();
+                    //frmhasta.hastatc = MskTc.Text;
                     frmhasta.Show();
                     this.Hide();
                 }
@@ -53,13 +63,18 @@ namespace Hastane_Proje
                 {
                     MessageBox.Show("TC Kimlik No veya Şifre hatalı lütfen tekrar deneyiniz .", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                bglgiris.baglanti().Close();              
+                bglgiris.baglanti().Close();
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
+            FrmGirisler FrmGirisler = new FrmGirisler();
+            FrmGirisler.Show();
 
+            this.Hide();
         }
+
+        
     }
 }

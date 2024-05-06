@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Hastane_Proje
 {
@@ -11,7 +12,7 @@ namespace Hastane_Proje
     {
         public SqlConnection baglanti()
         {
-            SqlConnection baglan = new SqlConnection("Data Source=DESKTOP-7E9QC34;Initial Catalog=HastaneProje;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+            SqlConnection baglan = new SqlConnection("Data Source = DESKTOP-7E9QC34; Initial Catalog = HastaneProje; Integrated Security = True; Encrypt = True; TrustServerCertificate=True");
             baglan.Open();
             return baglan;
         }

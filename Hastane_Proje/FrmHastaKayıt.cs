@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Microsoft.SqlServer.Server;
 
 namespace Hastane_Proje
 {
@@ -29,18 +30,27 @@ namespace Hastane_Proje
             radioButton1.Checked = false;
             radioButton2.Checked = false;
             TxtSifre.Text = "";
-            checkBox1.Checked = false;
+            
         }
 
         private void BtnKayıt_Click(object sender, EventArgs e)
         {
-            if (TxtAd.Text == "" || TxtSoyad.Text == "" || MskTc.Text == "" || maskedTextBox1.Text == "" || TxtSifre.Text == "" || checkBox1.Checked == false) 
+            if (TxtAd.Text == "" || TxtSoyad.Text == "" || MskTc.Text == "" || maskedTextBox1.Text == "" || TxtSifre.Text == "")
             {
                 MessageBox.Show("Boş kalan alanları lütfen doldurunuz .", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                SqlCommand komutkayıt = new SqlCommand("insert into Tbl_Hastalar (Hastaad,Hastasoyad,Hastatc,Hastacinsiyet,Hastasifre) values (@e1,@e2,@e3,@e4,@e5)", bgl.baglanti());
+                SqlCommand kontrolKomut = new SqlCommand("SELECT COUNT(*) FROM Tbl_Hastalar WHERE HastaTC = @tc", bgl.baglanti());
+                kontrolKomut.Parameters.AddWithValue("@tc", MskTc.Text);
+                int tcExist = (int)kontrolKomut.ExecuteScalar();
+                if (tcExist > 0)
+                {
+                    MessageBox.Show("Girdiğiniz TC kimlik numarası zaten kullanımda.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Kayıt işleminden çık
+                }
+
+                SqlCommand komutkayıt = new SqlCommand("INSERT INTO Tbl_Hastalar (HastaAd, HastaSoyad, HastaTC, HastaTelefon, HastaCinsiyet, HastaSifre) VALUES (@e1, @e2, @e3, @e4, @e5, @e6)", bgl.baglanti());
                 komutkayıt.Parameters.AddWithValue("@e1", TxtAd.Text);
                 komutkayıt.Parameters.AddWithValue("@e2", TxtSoyad.Text);
                 komutkayıt.Parameters.AddWithValue("@e3", MskTc.Text);
@@ -58,8 +68,9 @@ namespace Hastane_Proje
                     MessageBox.Show("Kayıt yapılmıştır " + TxtAd.Text + " Hanım", "Tebrikler", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 temizle();
-            }    
+            }
         }
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked == true)
@@ -80,6 +91,16 @@ namespace Hastane_Proje
         private void FrmHastaKayıt_Load(object sender, EventArgs e)
         {
             radioButton1.Checked = true;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void TxtAd_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

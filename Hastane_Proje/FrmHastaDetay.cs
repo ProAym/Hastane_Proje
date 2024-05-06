@@ -25,8 +25,16 @@ namespace Hastane_Proje
         void randevugecmislistele()
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("Select * From Tbl_Randevular where Hastatc=" + LblTc.Text, bgldetay.baglanti());
-            da.Fill(dt);
+            using (SqlConnection connection = bgldetay.baglanti())
+            {
+                string query = "SELECT * FROM Tbl_Randevular WHERE HastaTC = @HastaTC";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@HastaTC", LblTc.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+            }
             dataGridView1.DataSource = dt;
         }
 
@@ -35,50 +43,75 @@ namespace Hastane_Proje
             LblTc.Text = hastatc;
 
             // Ad Soyad çekme
-            SqlCommand komut = new SqlCommand("Select Hastaad,Hastasoyad From Tbl_Hastalar where Hastatc=@d1", bgldetay.baglanti());
-            komut.Parameters.AddWithValue("@d1", LblTc.Text);
-            SqlDataReader dr = komut.ExecuteReader();
-            while (dr.Read())
+            using (SqlConnection connection = bgldetay.baglanti())
             {
-                LblAdsoyad.Text = dr[0].ToString() + " " + dr[1].ToString();
+                string query = "SELECT Hastaad, Hastasoyad FROM Tbl_Hastalar WHERE HastaTC = @HastaTC";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@HastaTC", LblTc.Text);
+                    SqlDataReader dr = command.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        LblAdsoyad.Text = dr["Hastaad"].ToString() + " " + dr["Hastasoyad"].ToString();
+                    }
+                }
             }
-            bgldetay.baglanti().Close();
 
             randevugecmislistele();
 
             //Branşları comboboxa aktarma
-            SqlCommand komut2 = new SqlCommand("Select Bransad From Tbl_Branslar", bgldetay.baglanti());
-            SqlDataReader dr2 = komut2.ExecuteReader();
-            while (dr2.Read())
+            using (SqlConnection connection = bgldetay.baglanti())
             {
-                CmbBrans.Items.Add(dr2[0].ToString());
+                string query = "SELECT Bransad FROM Tbl_Branslar";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader dr2 = command.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        CmbBrans.Items.Add(dr2["Bransad"].ToString());
+                    }
+                }
             }
-            bgldetay.baglanti().Close();
         }
 
         // Branş seçtikten sonra combobox'a o branşdaki doktorları ekledik
+        // Branş seçtikten sonra combobox'a o branşdaki doktorları ekledik
         private void CmbBrans_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Txtid.Text = "";
             CmbDoktor.Text = "";
             CmbDoktor.Items.Clear();
 
-            SqlCommand komut3 = new SqlCommand("Select Doktorad,Doktorsoyad From Tbl_Doktorlar where Doktorbrans=@b1", bgldetay.baglanti());
-            komut3.Parameters.AddWithValue("@b1", CmbBrans.Text);
-            SqlDataReader dr3 = komut3.ExecuteReader();
-            while (dr3.Read())
+            using (SqlConnection connection = bgldetay.baglanti())
             {
-                CmbDoktor.Items.Add(dr3[0].ToString() + " " + dr3[1].ToString());
+                string query = "SELECT Doktorad, Doktorsoyad FROM Tbl_Doktorlar WHERE Doktorbrans = @Doktorbrans";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Doktorbrans", CmbBrans.Text);
+                    SqlDataReader dr3 = command.ExecuteReader();
+                    while (dr3.Read())
+                    {
+                        CmbDoktor.Items.Add(dr3["Doktorad"].ToString() + " " + dr3["Doktorsoyad"].ToString());
+                    }
+                }
             }
-            bgldetay.baglanti().Close();
         }
 
+        // aktif randevular
         // aktif randevular
         private void CmbDoktor_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("Select * From Tbl_Randevular where Randevubrans='" + CmbBrans.Text + "'" + " and Randevudoktor='" + CmbDoktor.Text + "' and Randevudurum=0", bgldetay.baglanti());
-            da.Fill(dt);
+            using (SqlConnection connection = bgldetay.baglanti())
+            {
+                string query = "SELECT * FROM Tbl_Randevular WHERE Randevubrans = @Randevubrans AND Randevudoktor = @Randevudoktor AND Randevudurum = 0";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Randevubrans", CmbBrans.Text);
+                    command.Parameters.AddWithValue("@Randevudoktor", CmbDoktor.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+            }
             dataGridView2.DataSource = dt;
         }
 
@@ -89,13 +122,6 @@ namespace Hastane_Proje
             frmguncelle.Show();
         }
 
-        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int secilen = dataGridView2.SelectedCells[0].RowIndex;
-
-            Txtid.Text = dataGridView2.Rows[secilen].Cells[0].Value.ToString();
-        }
-
         private void BtnRandevu_Click(object sender, EventArgs e)
         {
             if ( CmbDoktor.Text == "" || CmbBrans.Text == "" || RchSikayet.Text == "")
@@ -104,14 +130,12 @@ namespace Hastane_Proje
             }
             else
             {
-                SqlCommand komutrandevu = new SqlCommand("update Tbl_Randevular set Randevudurum=1,Hastatc=@r1,Randevuhastasikayet=@r2 where Randevuid=@r3", bgldetay.baglanti());
+                SqlCommand komutrandevu = new SqlCommand("update Tbl_Randevular set Randevudurum=1,Hastatc=@r1,Randevuhastasikayet=@r2 ", bgldetay.baglanti());
                 komutrandevu.Parameters.AddWithValue("@r1", LblTc.Text);
                 komutrandevu.Parameters.AddWithValue("@r2", RchSikayet.Text);
-                komutrandevu.Parameters.AddWithValue("@r3", Txtid.Text);
                 komutrandevu.ExecuteNonQuery();
                 bgldetay.baglanti().Close();
                 MessageBox.Show(CmbDoktor.Text + " Bey ' den " + CmbBrans.Text + " için randevu alındı .", "Tebrikler " + LblAdsoyad.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Txtid.Text = "";
                 CmbBrans.Text = "";
                 CmbDoktor.Text = "";
                 RchSikayet.Text = "";
@@ -126,8 +150,8 @@ namespace Hastane_Proje
         }
         private void LogoutUser()
         {
-            FrmHastaGiris FrmHastaGiris = new FrmHastaGiris();
-            FrmHastaGiris.Show();
+            FrmGirisler FrmGirisler = new FrmGirisler();
+            FrmGirisler.Show();
 
             // Hide or close the current form
             this.Hide();
@@ -143,5 +167,16 @@ namespace Hastane_Proje
             }
 
         }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            FrmGirisler FrmGirisler = new FrmGirisler();
+            FrmGirisler.Show();
+
+            // Hide or close the current form
+            this.Hide();
+        }
+
+        
     }
 }

@@ -31,23 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHastaGiris));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.MskTc = new System.Windows.Forms.MaskedTextBox();
-            this.TxtSifre = new System.Windows.Forms.TextBox();
             this.LnkKayıt = new System.Windows.Forms.LinkLabel();
-            this.BtnGiris = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.BtnClose = new Guna.UI2.WinForms.Guna2Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Btngiris = new Guna.UI2.WinForms.Guna2Button();
+            this.TxtSifre = new Guna.UI2.WinForms.Guna2TextBox();
+            this.MskTc = new Guna.UI2.WinForms.Guna2TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Georgia", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(12, 57);
+            this.label1.Location = new System.Drawing.Point(24, 163);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 23);
             this.label1.TabIndex = 0;
@@ -58,37 +55,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Georgia", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(98, 108);
+            this.label2.Location = new System.Drawing.Point(102, 222);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Şifre :";
-            // 
-            // MskTc
-            // 
-            this.MskTc.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MskTc.Location = new System.Drawing.Point(179, 57);
-            this.MskTc.Mask = "00000000000";
-            this.MskTc.Name = "MskTc";
-            this.MskTc.Size = new System.Drawing.Size(162, 35);
-            this.MskTc.TabIndex = 2;
-            this.MskTc.ValidatingType = typeof(int);
-            // 
-            // TxtSifre
-            // 
-            this.TxtSifre.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.TxtSifre.Location = new System.Drawing.Point(179, 104);
-            this.TxtSifre.Name = "TxtSifre";
-            this.TxtSifre.Size = new System.Drawing.Size(162, 33);
-            this.TxtSifre.TabIndex = 3;
-            this.TxtSifre.UseSystemPasswordChar = true;
             // 
             // LnkKayıt
             // 
             this.LnkKayıt.AutoSize = true;
             this.LnkKayıt.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LnkKayıt.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.LnkKayıt.Location = new System.Drawing.Point(85, 246);
+            this.LnkKayıt.Location = new System.Drawing.Point(235, 409);
             this.LnkKayıt.Name = "LnkKayıt";
             this.LnkKayıt.Size = new System.Drawing.Size(186, 19);
             this.LnkKayıt.TabIndex = 4;
@@ -96,87 +74,124 @@
             this.LnkKayıt.Text = "Hesabın yok mu ? Kayıt Ol";
             this.LnkKayıt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkKayıt_LinkClicked);
             // 
-            // BtnGiris
+            // BtnClose
             // 
-            this.BtnGiris.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.BtnGiris.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnGiris.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.BtnGiris.Location = new System.Drawing.Point(23, 168);
-            this.BtnGiris.Name = "BtnGiris";
-            this.BtnGiris.Size = new System.Drawing.Size(318, 62);
-            this.BtnGiris.TabIndex = 5;
-            this.BtnGiris.Text = "Giriş Yap";
-            this.BtnGiris.UseVisualStyleBackColor = false;
-            this.BtnGiris.Click += new System.EventHandler(this.BtnGiris_Click);
+            this.BtnClose.CheckedState.Parent = this.BtnClose;
+            this.BtnClose.CustomImages.Parent = this.BtnClose;
+            this.BtnClose.FillColor = System.Drawing.Color.Red;
+            this.BtnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnClose.ForeColor = System.Drawing.Color.White;
+            this.BtnClose.HoverState.Parent = this.BtnClose;
+            this.BtnClose.Location = new System.Drawing.Point(712, 12);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.ShadowDecoration.Parent = this.BtnClose;
+            this.BtnClose.Size = new System.Drawing.Size(43, 28);
+            this.BtnClose.TabIndex = 15;
+            this.BtnClose.Text = "X";
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // panel1
+            // pictureBox2
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(540, 22);
-            this.panel1.TabIndex = 6;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(564, 46);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(167, 149);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
             // 
-            // panel2
+            // Btngiris
             // 
-            this.panel2.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 325);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(540, 41);
-            this.panel2.TabIndex = 7;
+            this.Btngiris.BorderRadius = 20;
+            this.Btngiris.CheckedState.Parent = this.Btngiris;
+            this.Btngiris.CustomImages.Parent = this.Btngiris;
+            this.Btngiris.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Btngiris.ForeColor = System.Drawing.Color.White;
+            this.Btngiris.HoverState.Parent = this.Btngiris;
+            this.Btngiris.Location = new System.Drawing.Point(190, 317);
+            this.Btngiris.Name = "Btngiris";
+            this.Btngiris.ShadowDecoration.Parent = this.Btngiris;
+            this.Btngiris.Size = new System.Drawing.Size(281, 45);
+            this.Btngiris.TabIndex = 16;
+            this.Btngiris.Text = "Giriş Yap";
+            this.Btngiris.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
-            // label4
+            // TxtSifre
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(212, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 14);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Eymen";
+            this.TxtSifre.BorderRadius = 20;
+            this.TxtSifre.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtSifre.DefaultText = "";
+            this.TxtSifre.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TxtSifre.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TxtSifre.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TxtSifre.DisabledState.Parent = this.TxtSifre;
+            this.TxtSifre.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TxtSifre.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TxtSifre.FocusedState.Parent = this.TxtSifre;
+            this.TxtSifre.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSifre.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TxtSifre.HoverState.Parent = this.TxtSifre;
+            this.TxtSifre.Location = new System.Drawing.Point(194, 212);
+            this.TxtSifre.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TxtSifre.Name = "TxtSifre";
+            this.TxtSifre.PasswordChar = '\0';
+            this.TxtSifre.PlaceholderText = "";
+            this.TxtSifre.SelectedText = "";
+            this.TxtSifre.ShadowDecoration.Parent = this.TxtSifre;
+            this.TxtSifre.Size = new System.Drawing.Size(287, 44);
+            this.TxtSifre.TabIndex = 17;
+            this.TxtSifre.UseSystemPasswordChar = true;
             // 
-            // pictureBox1
+            // MskTc
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(347, 48);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(204, 238);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
+            this.MskTc.BorderRadius = 20;
+            this.MskTc.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MskTc.DefaultText = "";
+            this.MskTc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.MskTc.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.MskTc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.MskTc.DisabledState.Parent = this.MskTc;
+            this.MskTc.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.MskTc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.MskTc.FocusedState.Parent = this.MskTc;
+            this.MskTc.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MskTc.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.MskTc.HoverState.Parent = this.MskTc;
+            this.MskTc.Location = new System.Drawing.Point(194, 151);
+            this.MskTc.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.MskTc.Name = "MskTc";
+            this.MskTc.PasswordChar = '\0';
+            this.MskTc.PlaceholderText = "";
+            this.MskTc.SelectedText = "";
+            this.MskTc.ShadowDecoration.Parent = this.MskTc;
+            this.MskTc.Size = new System.Drawing.Size(287, 44);
+            this.MskTc.TabIndex = 17;
             // 
             // FrmHastaGiris
             // 
-            this.AcceptButton = this.BtnGiris;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(540, 366);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.BtnGiris);
-            this.Controls.Add(this.LnkKayıt);
-            this.Controls.Add(this.TxtSifre);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(767, 579);
             this.Controls.Add(this.MskTc);
+            this.Controls.Add(this.TxtSifre);
+            this.Controls.Add(this.Btngiris);
+            this.Controls.Add(this.BtnClose);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.LnkKayıt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximizeBox = false;
             this.Name = "FrmHastaGiris";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hasta Giriş Ekranı";
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,13 +201,11 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox MskTc;
-        private System.Windows.Forms.TextBox TxtSifre;
         private System.Windows.Forms.LinkLabel LnkKayıt;
-        private System.Windows.Forms.Button BtnGiris;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Guna.UI2.WinForms.Guna2Button BtnClose;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private Guna.UI2.WinForms.Guna2Button Btngiris;
+        private Guna.UI2.WinForms.Guna2TextBox TxtSifre;
+        private Guna.UI2.WinForms.Guna2TextBox MskTc;
     }
 }

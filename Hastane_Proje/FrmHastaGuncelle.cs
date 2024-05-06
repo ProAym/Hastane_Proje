@@ -30,19 +30,7 @@ namespace Hastane_Proje
         // hasta bilgilerini güncelleme
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
-            DialogResult secenek = MessageBox.Show("Merhaba" + " " + TxtAd.Text + " " + "bilgileriniz güncellensin mi ?", "Hasta Güncelleme", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (secenek == DialogResult.Yes)
-            {
-                SqlCommand komut1 = new SqlCommand("Update Tbl_Hastalar set Hastaad=@p1,Hastasoyad=@p2,Hastatel=@p3,Hastacinsiyet=@p4,Hastasifre=@p5 where Hastatc=@p6 ", bglkayıt.baglanti());
-                komut1.Parameters.AddWithValue("@p1", TxtAd.Text);
-                komut1.Parameters.AddWithValue("@p2", TxtSoyad.Text);
-                komut1.Parameters.AddWithValue("@p3", MskTel.Text);
-                komut1.Parameters.AddWithValue("@p4", label8.Text);
-                komut1.Parameters.AddWithValue("@p5", TxtSifre.Text);
-                komut1.Parameters.AddWithValue("@p6", MskTc.Text);
-                komut1.ExecuteNonQuery();
-                bglkayıt.baglanti().Close();
-            }
+           
         }
 
         private void FrmHastaGuncelle_Load(object sender, EventArgs e)
@@ -90,6 +78,28 @@ namespace Hastane_Proje
             {
                 radioButton2.Checked = true;
             }
+        }
+
+        private void BtnGuncelle_Click_1(object sender, EventArgs e)
+        {
+            DialogResult secenek = MessageBox.Show("Merhaba" + " " + TxtAd.Text + " " + "bilgileriniz güncellensin mi ?", "Hasta Güncelleme", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (secenek == DialogResult.Yes)
+            {
+                SqlCommand komut1 = new SqlCommand("Update Tbl_Hastalar set HastaAd=@p1,HastaSoyad=@p2,HastaTelefon=@p3,HastaCinsiyet=@p4,HastaSifre=@p5 where HastaTC=@p6 ", bglkayıt.baglanti());
+                komut1.Parameters.AddWithValue("@p1", TxtAd.Text);
+                komut1.Parameters.AddWithValue("@p2", TxtSoyad.Text);
+                komut1.Parameters.AddWithValue("@p3", MskTel.Text);
+                komut1.Parameters.AddWithValue("@p4", label8.Text);
+                komut1.Parameters.AddWithValue("@p5", TxtSifre.Text);
+                komut1.Parameters.AddWithValue("@p6", MskTc.Text);
+                komut1.ExecuteNonQuery();
+                bglkayıt.baglanti().Close();
+            }
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

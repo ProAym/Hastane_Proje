@@ -24,18 +24,10 @@ namespace Hastane_Proje
             this.Hide();
         }
 
-        private void BtnDoktor_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
-            FrmDoktorGiris frmdoktor = new FrmDoktorGiris();
-            frmdoktor.Show();
-            this.Hide();
+            Application.Exit();
         }
 
-        private void BtnSekreter_Click(object sender, EventArgs e)
-        {
-            FrmSekreterGiris frmsekreter = new FrmSekreterGiris();
-            frmsekreter.Show();
-            this.Hide();
-        }
     }
 }
