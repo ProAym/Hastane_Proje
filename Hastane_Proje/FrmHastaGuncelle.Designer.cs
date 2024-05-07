@@ -36,6 +36,10 @@
             this.BtnClose = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.BtnGuncelle = new Guna.UI2.WinForms.Guna2Button();
+            this.TxtAd = new System.Windows.Forms.TextBox();
+            this.TxtSoyad = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.MskTc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +47,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Georgia", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label6.Location = new System.Drawing.Point(107, 193);
+            this.label6.Location = new System.Drawing.Point(115, 450);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 23);
             this.label6.TabIndex = 26;
@@ -53,7 +57,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Georgia", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(90, 136);
+            this.label4.Location = new System.Drawing.Point(98, 393);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 23);
             this.label4.TabIndex = 25;
@@ -62,7 +66,7 @@
             // TxtSifre
             // 
             this.TxtSifre.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.TxtSifre.Location = new System.Drawing.Point(182, 187);
+            this.TxtSifre.Location = new System.Drawing.Point(190, 444);
             this.TxtSifre.Name = "TxtSifre";
             this.TxtSifre.Size = new System.Drawing.Size(162, 33);
             this.TxtSifre.TabIndex = 21;
@@ -71,7 +75,7 @@
             // MskTel
             // 
             this.MskTel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MskTel.Location = new System.Drawing.Point(182, 128);
+            this.MskTel.Location = new System.Drawing.Point(190, 385);
             this.MskTel.Mask = "(999) 000-0000";
             this.MskTel.Name = "MskTel";
             this.MskTel.Size = new System.Drawing.Size(162, 35);
@@ -91,7 +95,6 @@
             this.BtnClose.Size = new System.Drawing.Size(43, 28);
             this.BtnClose.TabIndex = 33;
             this.BtnClose.Text = "X";
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // guna2PictureBox1
             // 
@@ -113,13 +116,49 @@
             this.BtnGuncelle.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.BtnGuncelle.ForeColor = System.Drawing.Color.Black;
             this.BtnGuncelle.HoverState.Parent = this.BtnGuncelle;
-            this.BtnGuncelle.Location = new System.Drawing.Point(103, 262);
+            this.BtnGuncelle.Location = new System.Drawing.Point(111, 519);
             this.BtnGuncelle.Name = "BtnGuncelle";
             this.BtnGuncelle.ShadowDecoration.Parent = this.BtnGuncelle;
             this.BtnGuncelle.Size = new System.Drawing.Size(241, 50);
             this.BtnGuncelle.TabIndex = 35;
             this.BtnGuncelle.Text = "Güncelle";
-            this.BtnGuncelle.Click += new System.EventHandler(this.BtnGuncelle_Click_1);
+            // 
+            // TxtAd
+            // 
+            this.TxtAd.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtAd.Location = new System.Drawing.Point(190, 198);
+            this.TxtAd.Name = "TxtAd";
+            this.TxtAd.Size = new System.Drawing.Size(162, 33);
+            this.TxtAd.TabIndex = 21;
+            this.TxtAd.UseSystemPasswordChar = true;
+            // 
+            // TxtSoyad
+            // 
+            this.TxtSoyad.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtSoyad.Location = new System.Drawing.Point(190, 257);
+            this.TxtSoyad.Name = "TxtSoyad";
+            this.TxtSoyad.Size = new System.Drawing.Size(162, 33);
+            this.TxtSoyad.TabIndex = 21;
+            this.TxtSoyad.UseSystemPasswordChar = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(327, 321);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 24);
+            this.label8.TabIndex = 36;
+            this.label8.Text = "label1";
+            this.label8.Visible = false;
+            // 
+            // MskTc
+            // 
+            this.MskTc.AutoSize = true;
+            this.MskTc.Location = new System.Drawing.Point(358, 148);
+            this.MskTc.Name = "MskTc";
+            this.MskTc.Size = new System.Drawing.Size(66, 24);
+            this.MskTc.TabIndex = 36;
+            this.MskTc.Text = "label1";
             // 
             // FrmHastaGuncelle
             // 
@@ -127,12 +166,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(452, 362);
+            this.ClientSize = new System.Drawing.Size(452, 615);
+            this.Controls.Add(this.MskTc);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.BtnGuncelle);
             this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.TxtSoyad);
+            this.Controls.Add(this.TxtAd);
             this.Controls.Add(this.TxtSifre);
             this.Controls.Add(this.MskTel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -159,5 +202,9 @@
         private Guna.UI2.WinForms.Guna2Button BtnClose;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Button BtnGuncelle;
+        private System.Windows.Forms.TextBox TxtAd;
+        private System.Windows.Forms.TextBox TxtSoyad;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label MskTc;
     }
 }

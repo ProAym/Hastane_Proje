@@ -177,6 +177,6 @@ namespace Hastane_Proje
             this.Hide();
         }
 
-        
+       
     }
 }
